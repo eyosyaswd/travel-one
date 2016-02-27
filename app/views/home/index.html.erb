@@ -1,8 +1,9 @@
 <div class="container-fluid" ng-app="travelApp">
   <div class="panel panel-success">
     <div ng-controller="VacationController">
+      <div class="places" ng-if="places">{{ places }}</div>
       <div ng-repeat="vacation in vacations">
-        <p>{{ vacation }}</p>
+        <h2 ng-click="getPlaces('zoo', vacation.destination)">{{ vacation }}</h2>
       </div>
       <div ng-repeat="account in accounts">
         <p>{{ account }}</p>

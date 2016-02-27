@@ -53,10 +53,24 @@ app.factory('accountFactory', ['$http',
   }
 ]);
 
+app.factory('placesFactory', ['$http', 
+  function($http){
+    var urlBase = '/api/places';
+    var places = {};
 
-app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory',
-  function($scope, $auth, vacationFactory, accountFactory){
+    places.getPlaces = function(type, city) {
+      return $http.get(urlBase, { "type": type, "city": city });
+    }
+
+    return places;
+  }
+]);
+
+app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory',
+  function($scope, $auth, vacationFactory, accountFactory, placesFactory){
     $scope.name = 'Will';
+
+    $scope.places_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
 
     function getAccounts() {
       accountFactory.getAccounts()
@@ -76,6 +90,23 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'acc
         .error(function(error) {
           $scope.status = "Unable to load vacations: " + error.message;
         });
+    }
+
+    $scope.getPlaces = function(type, city) {
+      console.log("clicked");
+      placesFactory.getPlaces(type, city)
+        .success(function(places) {
+          $scope.places = places;
+        })
+        .error(function(error) {
+          $scope.places = places;
+          $scope.status = "Unable to load places: " + error.message;
+        });
+    }
+
+    $scope.testPlaces = function(type, city) {
+      console.log(type + " " + city);
+      return type + " " + city;
     }
 
     $scope.login = function() {
