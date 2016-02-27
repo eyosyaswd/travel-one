@@ -37,6 +37,9 @@ gem 'omniauth'
 
 # Use tzinfo-data for Windows compiling
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
+# Use certified for Windows compiling
+  gem 'certified'
   
 # Use HTTParty for accessing the Capital One APIs
   gem 'httparty'  
