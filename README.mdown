@@ -1,0 +1,39 @@
+# Travel Planner
+This app uses a RESTful API to communicate with the front end.
+
+#### GET /api/vacations
+Returns the vacations planned for the current user.
+```json
+[
+    {
+        "id":1,
+        "origin":"RIC",
+        "destination":"LAX",
+        "fare":"400.0",
+        "departure_time":"2016-04-02T00:00:00.000Z",
+        "return_time":"2016-04-09T00:00:00.000Z",
+        "user_id":1,
+        "created_at":"2016-02-27T14:24:36.941Z",
+        "updated_at":"2016-02-27T14:24:36.941Z"
+    }
+]
+```
+
+### POST /api/vacations
+Creates a new vacation. The user must be logged in. The required attributes are:
+```json
+{
+    "origin": "RIC",
+    "destination": "LAX",
+    "fare": 400.00,
+    "departure_time": "2016-04-02",
+    "return_time": "2016-04-09"
+}
+```
+
+### GET /api/vacations/[id]
+Returns the vacation with the specified id.
+
+### DELETE /api/vacations/[id]
+Deletes the vacation with the specified id.
+

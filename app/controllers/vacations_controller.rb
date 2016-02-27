@@ -1,6 +1,10 @@
 class VacationsController < ApplicationController
   before_action :authenticate_user!
 
+  def initialize
+    @cap1 = CapitalOne.new('62dbca64eba755113d88efdeee141db0')
+  end
+
   def index
     render json: Vacation.where(user: current_user)
   end
