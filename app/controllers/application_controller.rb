@@ -5,5 +5,4 @@ class ApplicationController < ActionController::Base
 
   # For hackathon: don't worry about CSRF attacks...
   # protect_from_forgery with: :exception
-  user = User.first
 end
