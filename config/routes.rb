@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
-
-  root 'user#index'
+  mount_devise_token_auth_for 'User', at: 'auth'
+  root 'users#index'
 
   resources :vacations, only: [:index, :create, :show, :destroy], path: '/api/vacations'
   # The priority is based upon order of creation: first created -> highest priority.
