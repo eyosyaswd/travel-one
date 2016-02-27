@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyString
+  destination: MyString
+  fare: 9.99
+  departure_time: 2016-02-26 23:07:16
+  return_time: 2016-02-26 23:07:16
+
+two:
+  origin: MyString
+  destination: MyString
+  fare: 9.99
+  departure_time: 2016-02-26 23:07:16
+  return_time: 2016-02-26 23:07:16
