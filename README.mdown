@@ -1,4 +1,4 @@
-# # Travel Planner
+# Travel Planner
 This app uses a RESTful API to communicate with the front end.
 
 #### GET /api/vacations
@@ -34,8 +34,6 @@ Creates a new vacation. The user must be logged in. The required attributes are:
 ### GET /api/vacations/[id]
 Returns the vacation with the specified id.
 
-### DELETE /api/vacations
+### DELETE /api/vacations/[id]
 Deletes the vacation with the specified id.
-
-
 
