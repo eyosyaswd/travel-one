@@ -29,12 +29,44 @@ app.factory('vacationFactory', ['$http',
 
     return vacation;
   }
-])
+]);
+
+app.factory('accountFactory', ['$http', 
+  function($http){
+    var urlBase = '/api/accounts';
+    var account = {};
+
+    account.getAccounts = function() {
+      return $http.get(urlBase);
+    }
+
+    account.getAccount = function(id) {
+      return $http.get(urlBase + "/" + id)
+    }
+
+    // for new savings account, just provide name
+    account.createAccount = function(name) {
+      return $http.post(urlBase, {"nickname": name});
+    }
+
+    return account;
+  }
+]);
 
 
-app.controller('VacationController', ['$scope', '$auth', 'vacationFactory',
-  function($scope, $auth, vacationFactory){
+app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory',
+  function($scope, $auth, vacationFactory, accountFactory){
     $scope.name = 'Will';
+
+    function getAccounts() {
+      accountFactory.getAccounts()
+        .success(function(accounts) {
+          $scope.accounts = accounts;
+        })
+        .error(function(error) {
+          $scope.status = "Unable to load accounts: " + error.message;
+        });
+    }
 
     function getVacations() {
       vacationFactory.getVacations()
@@ -60,6 +92,7 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory',
 
     $scope.login();
     getVacations();
+    getAccounts();
   }
 ]);
 
