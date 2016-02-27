@@ -5,17 +5,17 @@ This app uses a RESTful API to communicate with the front end.
 Returns the vacations planned for the current user.
 ```json
 [
-    {
-        "id":1,
-        "origin":"RIC",
-        "destination":"LAX",
-        "fare":"400.0",
-        "departure_time":"2016-04-02T00:00:00.000Z",
-        "return_time":"2016-04-09T00:00:00.000Z",
-        "user_id":1,
-        "created_at":"2016-02-27T14:24:36.941Z",
-        "updated_at":"2016-02-27T14:24:36.941Z"
-    }
+  {
+    "id":1,
+    "origin":"RIC",
+    "destination":"LAX",
+    "fare":"400.0",
+    "departure_time":"2016-04-02T00:00:00.000Z",
+    "return_time":"2016-04-09T00:00:00.000Z",
+    "user_id":1,
+    "created_at":"2016-02-27T14:24:36.941Z",
+    "updated_at":"2016-02-27T14:24:36.941Z"
+  }
 ]
 ```
 
@@ -23,11 +23,11 @@ Returns the vacations planned for the current user.
 Creates a new vacation. The user must be logged in. The required attributes are:
 ```json
 {
-    "origin": "RIC",
-    "destination": "LAX",
-    "fare": 400.00,
-    "departure_time": "2016-04-02",
-    "return_time": "2016-04-09"
+  "origin": "RIC",
+  "destination": "LAX",
+  "fare": 400.00,
+  "departure_time": "2016-04-02",
+  "return_time": "2016-04-09"
 }
 ```
 
@@ -37,3 +37,48 @@ Returns the vacation with the specified id.
 ### DELETE /api/vacations/[id]
 Deletes the vacation with the specified id.
 
+### GET /api/accounts
+Shows all accounts associated with the current user.
+```json
+{
+  [
+  {
+    "_id": "56c66be6a73e492741507daf",
+    "rewards": 17337,
+    "balance": 20444,
+    "customer_id": "56c66be5a73e492741507380",
+    "nickname": "Mr.'s Account",
+    "type": "Checking"
+  },
+  ...
+}
+```
+
+### GET /api/accounts/[id]
+Shows a single account.
+
+### POST /api/accounts
+Creates a new, empty savings account.
+
+Request:
+```json
+{
+    "nickname": "Travel"
+}
+```
+
+Response:
+```json
+{
+  "code": 201,
+  "message": "Account created",
+  "objectCreated": {
+    "type": "Savings",
+    "nickname": "Travel",
+    "rewards": 0,
+    "balance": 0,
+    "customer_id": "56c66be5a73e492741507380",
+    "_id": "56d1b978480cf02f0f8879f6"
+  }
+}
+```
