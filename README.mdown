@@ -51,6 +51,7 @@ Shows all accounts associated with the current user.
     "type": "Checking"
   },
   ...
+  ]
 }
 ```
 
