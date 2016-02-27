@@ -42,15 +42,14 @@ Shows all accounts associated with the current user.
 ```json
 {
   [
-  {
-    "_id": "56c66be6a73e492741507daf",
-    "rewards": 17337,
-    "balance": 20444,
-    "customer_id": "56c66be5a73e492741507380",
-    "nickname": "Mr.'s Account",
-    "type": "Checking"
-  },
-  ...
+    {
+      "_id": "56c66be6a73e492741507daf",
+      "rewards": 17337,
+      "balance": 20444,
+      "customer_id": "56c66be5a73e492741507380",
+      "nickname": "Mr.'s Account",
+      "type": "Checking"
+    }
   ]
 }
 ```
