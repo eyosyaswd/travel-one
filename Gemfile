@@ -27,7 +27,7 @@ gem 'omniauth'
 gem 'bower-rails'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.9'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -43,6 +43,9 @@ gem 'bower-rails'
   
 # Use HTTParty for accessing the Capital One APIs
   gem 'httparty'
+  
+# Use oauth2 for authentication with sabre
+  gem 'oauth2'
   
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
