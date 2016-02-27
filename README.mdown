@@ -19,7 +19,7 @@ Returns the vacations planned for the current user.
 ]
 ```
 
-### POST /api/vacations
+#### POST /api/vacations
 Creates a new vacation. The user must be logged in. The required attributes are:
 ```json
 {
@@ -31,33 +31,31 @@ Creates a new vacation. The user must be logged in. The required attributes are:
 }
 ```
 
-### GET /api/vacations/[id]
+#### GET /api/vacations/[id]
 Returns the vacation with the specified id.
 
-### DELETE /api/vacations/[id]
+#### DELETE /api/vacations/[id]
 Deletes the vacation with the specified id.
 
-### GET /api/accounts
+#### GET /api/accounts
 Shows all accounts associated with the current user.
 ```json
-{
-  [
-    {
-      "_id": "56c66be6a73e492741507daf",
-      "rewards": 17337,
-      "balance": 20444,
-      "customer_id": "56c66be5a73e492741507380",
-      "nickname": "Mr.'s Account",
-      "type": "Checking"
-    }
-  ]
-}
+[
+  {
+    "_id": "56c66be6a73e492741507daf",
+    "rewards": 17337,
+    "balance": 20444,
+    "customer_id": "56c66be5a73e492741507380",
+    "nickname": "Mr.'s Account",
+    "type": "Checking"
+  }
+]
 ```
 
-### GET /api/accounts/[id]
+#### GET /api/accounts/[id]
 Shows a single account.
 
-### POST /api/accounts
+#### POST /api/accounts
 Creates a new, empty savings account.
 
 Request:
