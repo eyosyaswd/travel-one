@@ -1,0 +1,16 @@
+HTTP/1.1 302 Found 
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Location: http://localhost:3000/
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-cache
+X-Request-Id: cc32b4a4-8897-4849-9aaf-090eb3004c89
+X-Runtime: 0.115504
+Server: WEBrick/1.3.1 (Ruby/2.2.1/2015-02-26)
+Date: Sat, 27 Feb 2016 08:19:21 GMT
+Content-Length: 88
+Connection: Keep-Alive
+Set-Cookie: request_method=POST; path=/
+Set-Cookie: _travel_planner_session=R2IrWlZxRFZoVWIrQWlaU0g0Sk9tK0N1MVZ2ekF0U1Vob0RGKzkrbHUzeDA5d1V1a3dSVEV1NE5vNE9DdGVURngycm8rQ0NtYVFXSXFrMERJSGFUb29LT3UxdEpKK3dEcjhVb2VQZGhFRk11T2JsaEo2NDczN2VrT2FZUG55ejBqYW1NZFZ6clhyNThDSFJsMlV3UHozR0RyWGNBbW5ZamdnbmtzVDcwYU1DeHFXOXl0U09pdUplQTl3Q29XNGxtaU96WXNweVBkTDM1UEtOWHBwYklOZnZJcTIwV0FtRzJBOW1TZ3ZhdU9GaHlrT0pzZmJUcDJzYTBQNUcyWndmYi0tbUNpR1gxcStPbkNFdnNnUnFrbHloZz09--aa3bdf1ba38b9a83d1ab08da7d72cb3bdec2e1e7; path=/; HttpOnly
+

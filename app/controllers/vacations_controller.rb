@@ -1,4 +1,6 @@
-class VacationController < ApplicationController
+class VacationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     render json: Vacation.where(user: current_user)
   end
