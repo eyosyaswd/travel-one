@@ -1,10 +1,10 @@
 var app = angular.module('travelApp', ['ng-token-auth']);
 
 app.config(function($authProvider) {
-      $authProvider.configure({
-          apiUrl: ''
-      });
+  $authProvider.configure({
+      apiUrl: ''
   });
+});
 
 app.factory('vacationFactory', ['$http', 
   function($http) {
