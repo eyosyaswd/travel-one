@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  root 'users#index'
+  root 'home#index'
 
   resources :vacations, only: [:index, :create, :show, :destroy], path: '/api/vacations'
   resources :accounts, only: [:index, :create, :show], path: '/api/accounts'
