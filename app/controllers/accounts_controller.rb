@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
+
   def initialize
     @cap1 = CapitalOne.new(ENV["CAP1_KEY"])
   end
