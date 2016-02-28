@@ -33,17 +33,17 @@
                 <!-- Dashboard -->
                 <li class="nav_header">Dashboard</li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Select Account <b class="caret"></b></a>
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">Select Account <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li ng-repeat="account in accounts">
-                      <a href="#" ng-click="selectAccount(account)">{{ account.nickname }}</a>
+                      <a ng-click="selectAccount(account)">{{ account.nickname }}</a>
                     <li>
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
                   <ul class="dropdown-menu trips">
                   <li class="menu-item"><a href="#">Add Trip</a></li>
                     <li role="presentation" class="divider"></li>
