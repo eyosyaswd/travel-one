@@ -7,7 +7,7 @@ class PaymentPlansController < ApplicationController
   
   def create
     payment_plan = PaymentPlan.new filtered_params
-    current_vacation = (Vacation.where("user = #{current_user}")).order("created_at").last #needs to be changed
+    current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
 	payment_plan.vacation = current_vacation
 	payment_plan.transfer_amount = payment_plan.cost / ((payment_plan.end_date - payment_plan.start_date) / payment_plan.interval)
 	
@@ -24,6 +24,7 @@ class PaymentPlansController < ApplicationController
   end
 
   def show
+    current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
     payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.vacation_id)
 
     if payment_plan.nil?
@@ -34,6 +35,7 @@ class PaymentPlansController < ApplicationController
   end
 
   def destroy
+    current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
     payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.vacation_id)
 
     if vacation.nil?
@@ -48,12 +50,14 @@ class PaymentPlansController < ApplicationController
 
   private
     def filtered_params
-      params.require(:payment_plan).permit(:paying_account, :transfer_account, :start_date, :end_date, :interval, :vacation_id, :cost)
+      params.require(:paymentplan).permit(:paying_account, :transfer_account, :start_date, :end_date, :interval, :vacation_id, :cost)
     end
 	
 	def transfer #where will we check when the next payment is due?
-	  if (current date - start_date) % interval = 0
-	    @cap1.create_transfer(paying_account, transfer_account, Date.current, transfer_amount)
+	  current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
+      payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.vacation_id)
+	  if (Date.current - payment_plan.start_date) % payment_plan.interval = 0
+	    @cap1.create_transfer(payment_plan.paying_account, payment_plan.transfer_account, Date.current, payment_plan.transfer_amount)
 	  end
 	end
 end
