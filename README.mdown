@@ -1,5 +1,9 @@
-# Travel Planner
-This app uses a RESTful API to communicate with the front end.
+# Travel One
+The purpose of this application is to give users the options to plan the best trips
+to fit their budget and properly and easily allocate their money to save for their
+dream destinations. This app uses Capital One's Nessie Hackathon API, the Sabre Developer API and
+the Google Places API. The backend uses a RESTful API built with Ruby on Rails to communicate with
+a front end implemented in Angular.js.
 
 #### GET /api/vacations
 Returns the vacations planned for the current user.
