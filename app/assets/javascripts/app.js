@@ -1,9 +1,20 @@
-var app = angular.module('travelApp', ['ng-token-auth']);
+var app = angular.module('travelApp', ['ng-token-auth', 'ngRoute']);
 
-app.config(function($authProvider) {
+app.config(function($authProvider, $routeProvider) {
   $authProvider.configure({
     apiUrl: ''
   });
+
+  $routeProvider
+    .when("/", {
+      templateUrl: "vacations.html",
+      controller: "vacationController"
+    })
+    .when("/payplan/:loc", {
+      templateUrl: "payment_plans.html",
+      controller: "vacationsController"
+    })
+    .otherwise({redirectTo: "/"})
 });
 
 app.factory('vacationFactory', ['$http',
@@ -91,11 +102,10 @@ app.factory('placesFactory', ['$http',
   }
 ]);
 
-app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
-  function($scope, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
-    $scope.name = 'Will';
-
-    $scope.places_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
+app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
+  function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
+    $scope.place_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
+    $('input[name="daterange"]').daterangepicker(); // setup datepicker
 
     function getAccounts() {
       accountFactory.getAccounts()
@@ -125,6 +135,7 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
       placesFactory.getPlaces(type, city)
         .success(function(places) {
           $scope.places = places;
+          console.log($scope.places);
         })
         .error(function(error) {
           $scope.places = places;
@@ -145,7 +156,9 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
           console.log("New vacation created!");
 
           // load new vacations
-          $scope.getVacations();
+          getVacations();
+          $window.location.href = '#/payplan/' + $scope.selectedFlight.DestinationLocation;
+
         })
         .error(function(error) {
           $scope.status = "Unable to create vacation: " + error.message;
@@ -171,6 +184,8 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
 
     $scope.selectFlight = function(flight) {
       $scope.selectedFlight = flight;
+
+      $scope.getPlaces($scope.place_types[0], $scope.selectedFlight.DestinationLocation);
     }
 
     // get flights from Sabre
@@ -203,3 +218,11 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
   }
 ]);
 
+// budget amount
+// ID for an account to transfer
+// start date
+// end date
+// interval
+
+// next transfer = last transfer + interval
+// remaining transfers = 
