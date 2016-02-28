@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160228002645) do
     t.integer  "interval"
     t.integer  "vacation_id"
     t.decimal  "cost"
+    t.decimal  "transfer_amount"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
