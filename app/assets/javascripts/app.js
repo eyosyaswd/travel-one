@@ -132,6 +132,26 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
         });
     }
 
+    $scope.createVacation = function(flights) {
+      var newVacation = {
+        "origin": flights.OriginLocation,
+        "destination": $scope.selectedFlight.DestinationLocation,
+        "fare": $scope.selectedFlight.LowestFare.Fare,
+        "departure_time": $scope.selectedFlight.DepartureDateTime,
+        "return_time": $scope.selectedFlight.ReturnDateTime
+      }
+      vacationFactory.createVacation(newVacation)
+        .success(function(vacation) {
+          console.log("New vacation created!");
+
+          // load new vacations
+          $scope.getVacations();
+        })
+        .error(function(error) {
+          $scope.status = "Unable to create vacation: " + error.message;
+        });
+    }
+
     $scope.login = function() {
       $auth.submitLogin({
         // just use the test user
@@ -149,8 +169,14 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
 
     }
 
+    $scope.selectFlight = function(flight) {
+      $scope.selectedFlight = flight;
+    }
+
     // get flights from Sabre
     $scope.getFlights = function() {
+      $scope.selectedAccount = null;
+
       var picker = $('input[name="daterange"]');
       var startMoment = moment(picker.data('daterangepicker').startDate);
       var endMoment = moment(picker.data('daterangepicker').endDate);
@@ -159,7 +185,7 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
 
       flightFactory.getFlights($scope.origin, startDate, endDate, $scope.max_price)
         .success(function(flights) {
-          $scope.flights = flights["FareInfo"];
+          $scope.flights = flights;
           console.log($scope.flights);
         })
         .error(function(error) {
