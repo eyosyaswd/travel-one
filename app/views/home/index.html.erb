@@ -89,10 +89,38 @@
   </body>
 
   <script type="text/ng-template" id="payment_plans.html">
-    <h1>This is the payment plan!</h1>
-    <form id="payplan">
-
+    <div style="padding-left:10px;">
+    <h3>How do you want to pay?</h3>
+    <h4>Option 1: pay now!</h4>
+    <button class="btn btn-success"> Pay {{ vacation.fare | currency:"$" }}</button>
+    <h4>Option 2: payment plan</h4>
+    <div style="max-width: 300px;">
+    <form id="payment_plan">
+     <div class="form-group ">
+      <label class="control-label " for="paying_account">
+       Select paying (from) account
+      </label>
+      <select class="select form-control invput" id="select" name="paying_account">
+       <option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
+      </select>
+     </div>
+     <div class="form-group ">
+      <label class="control-label" for="transfer_account">
+       Select transfer (to) account
+      </label>
+      <select class="select form-control invput" id="select1" name="transfer_account">
+       <<option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
+      </select>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="number">
+       Interval (days between payments)
+      </label>
+      <input class="form-control invput" id="number" name="number" type="text"/>
+     </div>
     </form>
+    </div>
+    </div>
   </script>
 
   <script type="text/ng-template" id="vacations.html">
@@ -136,6 +164,11 @@
         </div>
         <div class="modal-body">
           <p>Here are some things you could do at your destination:</p>
+          <ul>
+            <li ng-repeat="result in places.results">
+              {{ result.name }} at {{ result.formatted_address }}
+            </li>
+          <ul>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
