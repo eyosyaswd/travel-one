@@ -106,6 +106,19 @@ app.factory('placesFactory', ['$http',
   }
 ]);
 
+app.factory('paymentPlanFactory', ['$http', 
+  function($http){
+    var urlBase = '/api/payment_plans';
+    var plans = {};
+
+    plans.createPlan = function(plan) {
+      return $http.post(urlBase, plan);
+    }
+
+    return plans;
+  }
+]);
+
 app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
   function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
     $scope.place_types = ["points+of+interest", "bars", "night_club", "museum", "zoo", "parks"];
@@ -222,9 +235,9 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
   }
 ]);
 
-app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory", "accountFactory",
-  function($scope, $routeParams, vacationFactory, accountFactory) {
-    console.log($routeParams.id);
+app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory", "accountFactory", "paymentPlanFactory",
+  function($scope, $routeParams, vacationFactory, accountFactory, paymentPlanFactory) {
+    $scope.plan = {};
     $('input[name="start_date"]').daterangepicker({"singleDatePicker": true}); // setup datepicker
     $('input[name="end_date"]').daterangepicker({"singleDatePicker": true}); // setup datepicker
 
@@ -252,7 +265,7 @@ app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory"
 
     getAccounts();
 
-    $scope.pay_now = function() {
+    $scope.payNow = function() {
       // bill the selected account
       var amount = $scope.vacation.fare;
       var account = $scope.pay_now_id;
@@ -260,8 +273,30 @@ app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory"
       // POST THAT SHIT
     }
 
-    $scope.create_plan = function() {
+    $scope.createPlan = function() {
+      $scope.plan["vacation_id"] = $scope.vacation.id;
+      $scope.plan["cost"] = $scope.vacation.fare;
 
+      var picker = $('input[name="start_date"]');
+      var startMoment = moment(picker.data('daterangepicker').startDate);
+      var startDate = startMoment.format("YYYY-MM-DD");
+
+      picker = $('input[name="end_date"]');
+      var endMoment = moment(picker.data('daterangepicker').startDate);
+      var endDate = endMoment.format("YYYY-MM-DD");
+
+      $scope.plan["start_date"] = startDate;
+      $scope.plan["end_date"] = endDate;
+
+      // post new plan
+      paymentPlanFactory.createPlan($scope.plan)
+      .success(function(plan) {
+        $scope.plan = plan;
+        console.log($scope.plan);
+      })
+      .error(function(error) {
+        $scope.status = "Unable to create payment plan: " + error.message;
+      });
     }
   }
 ]);

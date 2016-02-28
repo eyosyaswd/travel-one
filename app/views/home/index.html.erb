@@ -110,7 +110,7 @@
       <label class="control-label " for="paying_account">
        Select paying (from) account
       </label>
-      <select class="select form-control invput" id="select" name="paying_account">
+      <select class="select form-control invput" id="select" name="paying_account" ng-model="plan.paying_account">
        <option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
       </select>
      </div>
@@ -118,25 +118,25 @@
       <label class="control-label" for="transfer_account">
        Select transfer (to) account
       </label>
-      <select class="select form-control invput" id="select1" name="transfer_account">
+      <select class="select form-control invput" id="select1" name="transfer_account" ng-model="plan.transfer_account">
        <option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
       </select>
      </div>
      <div class="form-group">
       <label class="control-label" for="start_date">Start date</label>
-      <input class="form-control invput" type="text" name="start_date" value="05/04/2016" /> 
+      <input class="form-control invput" type="text" name="start_date" value="05/04/2016" ng-model="plan.start_date"/> 
      </div>
      <div class="form-group">
       <label class="control-label" for="end_date">End date</label>
-      <input class="form-control invput" type="text" name="end_date" value="05/05/2016" /> 
+      <input class="form-control invput" type="text" name="end_date" value="05/05/2016" ng-model="plan.end_date" /> 
      </div>
      <div class="form-group ">
       <label class="control-label " for="number">
        Interval (days between payments)
       </label>
-      <input class="form-control invput" id="number" name="number" type="text"/>
+      <input class="form-control invput" id="number" name="number" type="text" ng-model="plan.interval"/>
      </div>
-     <button class="btn btn-success">Set up plan</button>
+     <button class="btn btn-success" ng-click="createPlan()">Set up plan</button>
     </form>
     </div>
     </div>
