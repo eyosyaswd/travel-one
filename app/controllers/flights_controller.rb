@@ -9,9 +9,9 @@ class FlightsController < ApplicationController
 
   def index
     options = {
-      origin: params[:orig],
-      departuredate: params[:departure],
-      returndate: params[:retdate],
+      origin: params[:origin],
+      departuredate: params[:departuredate],
+      returndate: params[:returndate],
       maxfare: params[:maxfare],
       topdestinations: 10
     }

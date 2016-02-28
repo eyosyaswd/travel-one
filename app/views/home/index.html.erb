@@ -61,7 +61,6 @@
                 <li><a href="#"> Next Transfer: <span style="float: right;">TBD</span> </a></li>
                 <li><a href="#"> Remaining Transfers: <span style="float: right;">TBD</span></a></li>
                 <hr/>
-
                 <li><a href="#" class="accented">Sign Out</a></li>
               </ul>
             </div>
@@ -86,10 +85,25 @@
                     <h5 class="muted"> Your Results Will Appear Here </h5>
                   </center>
                 </div>
-                <div class="c1" style="">
-                </div>
-                <div class="c2">
-                  <canvas id="budget_chart" width="200" height="200" hidden> </canvas>
+                <div class="row" id= "add-trip">
+                  <form id="trip">
+                  <h5 class="header">Add Trip</h5>
+                  <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> <br/> From
+                  <input class="invput" type="text" name="daterange" value="01/01/2016 - 01/31/2016" /> <br/>
+                  Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="Airport code" ng-model="origin"/> <br/><!-- replace value with {{date}} -->
+                  With a budget of: $<input class="invput" value="300.00" ng-model="max_price" placeholder="What's your budget?">
+                  <br/>
+                  <input type="button" value="Search" id="submit_form_btn" ng-click="getFlights()">
+                  <hr/>
+                  </form>
+                  <div class="results" style="width:100%;height:100%;height:1000px">
+                    <div class="flight-result" ng-repeat="flight in flights">
+                      <span class="flight-price">{{ flight.LowestFare.Fare | currency:"$" }}</span>
+                      <span class="flight-destination">Destination: {{ flight.DestinationLocation }}</span>
+                      <span class="flight-distance">Distance: {{ flight.Distance }} miles</span>
+                      <span class="flight-price-per-mile">{{ flight.PricePerMile | currency:"$"}}/mile</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
