@@ -47,6 +47,7 @@ form > * {
 	border-right:1px solid rgba(255,255,255,.25);
 	position:fixed;
 	min-width:300px;
+	max-width:300px;
 	top:0px;
 	bottom:-50px;
 	background-color:rgba(48,62,78,0.975);
@@ -132,8 +133,13 @@ form > * {
 }
 .dropdown-menu{
 	position:absolute;
+	border-radius:0px;
+	background-color:rgba(48,62,78,0.975);
 	left:100%;
 	top:50%;
+}
+.dropdown-menu a{
+	color:white;
 }
 .dropdown-submenu{
 	border:1px solid rgba(255,255,255,0.9);
