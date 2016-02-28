@@ -6,7 +6,7 @@ class PaymentPlansController < ApplicationController
   end
 
   def index
-    render json: Vacation.where(user: current_user) #needs to be changed
+    render json: PaymentPlan.all #Vacation.where(user: current_user) #needs to be changed
   end
 
   def create
