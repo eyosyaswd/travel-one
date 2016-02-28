@@ -84,6 +84,12 @@ form > * {
 .invput:focus, .invput:active{
 	border:none;
 }
+select.invput{
+	color:white;
+}
+select option{
+	color:#333;
+}
 .header{
 	color:#afafaf;
 }
