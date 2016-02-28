@@ -8,6 +8,7 @@ class CreatePaymentPlans < ActiveRecord::Migration
       t.integer :interval
       t.integer :vacation_id
       t.decimal :cost
+	  t.decimal :transfer_amount
 
       t.timestamps null: false
     end

@@ -4,15 +4,13 @@ class PaymentPlansController < ApplicationController
   def initialize
     @cap1 = CapitalOne.new('62dbca64eba755113d88efdeee141db0')
   end
-
-  def index
-    render json: PaymentPlan.all #Vacation.where(user: current_user) #needs to be changed
-  end
-
+  
   def create
     payment_plan = PaymentPlan.new filtered_params
-    payment_plan.vacation = current_vacation #needs to be changed
-
+    current_vacation = (Vacation.where("user = #{current_user}")).order("created_at").last #needs to be changed
+	payment_plan.vacation = current_vacation
+	payment_plan.transfer_amount = payment_plan.cost / ((payment_plan.end_date - payment_plan.start_date) / payment_plan.interval)
+	
     if payment_plan.valid?
       payment_plan.save!
       current_vacation.payment_plan = [payment_plan]
@@ -26,7 +24,7 @@ class PaymentPlansController < ApplicationController
   end
 
   def show
-    payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.id)
+    payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.vacation_id)
 
     if payment_plan.nil?
       head :error
@@ -36,14 +34,15 @@ class PaymentPlansController < ApplicationController
   end
 
   def destroy
-    # only destroy user's vacations
-    payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.id)
+    payment_plan = PaymentPlan.find_by(id: params[:id], vacation_id: current_vacation.vacation_id)
 
     if vacation.nil?
       head :error
     else
       payment_plan.destroy
-      render json: payment_plan
+	  #cost should be the current balance of the transfer account
+	  @cap1.create_transfer(payment_plan.transfer_account, payment_plan.paying_account, Date.current, cost)
+	  render json: payment_plan
     end
   end
 
@@ -54,8 +53,7 @@ class PaymentPlansController < ApplicationController
 	
 	def transfer #where will we check when the next payment is due?
 	  if (current date - start_date) % interval = 0
-	    transfer_amount = cost / ((end_date - start_date) / interval) 
-	    @cap1.create_transfer(:paying_account, :transfer_account, Date.current, transfer_amount)
+	    @cap1.create_transfer(paying_account, transfer_account, Date.current, transfer_amount)
 	  end
 	end
 end
