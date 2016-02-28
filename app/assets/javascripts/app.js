@@ -95,7 +95,11 @@ app.factory('placesFactory', ['$http',
     var places = {};
 
     places.getPlaces = function(type, city) {
-      return $http.get(urlBase, { "type": type, "city": city });
+      return $http({
+        url: urlBase,
+        method: "GET",
+        params: { "type": type, "city": city }
+      })
     }
 
     return places;
@@ -104,7 +108,7 @@ app.factory('placesFactory', ['$http',
 
 app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
   function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
-    $scope.place_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
+    $scope.place_types = ["points+of+interest", "bars", "night_club", "museum", "zoo", "parks"];
     $('input[name="daterange"]').daterangepicker(); // setup datepicker
 
     function getAccounts() {

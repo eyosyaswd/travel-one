@@ -10,7 +10,7 @@ class GooglePlaces
   # get all places of type in city, use place id for select locations to perform
   # detail search.
   def text_search(type, city)
-    self.class.get("/textsearch/json?query=#{type}+in+#{city}&key=#{@key}")
+    self.class.get("/textsearch/json?query=#{type}+near+#{city}+airport&key=#{@key}")
   end
 
   #get specific details such as name, address, types, gplaces url, phone number

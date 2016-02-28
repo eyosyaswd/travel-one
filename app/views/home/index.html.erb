@@ -91,7 +91,7 @@
   </body>
 
   <script type="text/ng-template" id="payment_plans.html">
-    <h1>This is the payment plan!</h1>
+    <h2>How do you want to pay?</h2>
     <form id="payplan">
 
     </form>
@@ -138,6 +138,11 @@
         </div>
         <div class="modal-body">
           <p>Here are some things you could do at your destination:</p>
+          <ul>
+            <li ng-repeat="result in places.results">
+              {{ result.name }} at {{ result.formatted_address }}
+            </li>
+          <ul>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
