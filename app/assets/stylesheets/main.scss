@@ -1,0 +1,147 @@
+body{
+	padding-top:20px;
+	color:#efefef;
+	background-color:rgba(48,62,78,0.975);
+	background-image:image-url("img1.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+a:active, a{
+	color:white;
+}
+.header_img{
+	margin-left:5px;
+}
+.row{
+	max-width:100%;
+	overflow:hidden;
+}
+footer{
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	min-height:33px;
+	background-color:rgba(0,0,0,.925);
+	z-index:999999999;
+}
+#main{
+	overflow:hidden;
+	margin-left:5px;
+	margin-right:5px;
+	padding-bottom:15px;
+	padding-top:15px;
+	padding-right:5px;
+	background-color:rgba(0,0,0,.3);
+}
+a{
+	color:#efefef;
+}
+form > * {
+	margin-top:10px;
+}
+.main_content{
+	padding-left:310px;
+}
+#sidebar{
+	border-right:1px solid rgba(255,255,255,.25);
+	position:fixed;
+	min-width:300px;
+	max-width:300px;
+	top:0px;
+	bottom:-50px;
+	background-color:rgba(48,62,78,0.975);
+	margin-left:5px;
+	margin-bottom:50px;
+	z-index:9999;
+}.spacer{
+	float:left;
+	min-width:305px;
+	min-height:100%;
+}
+#submit_form_btn{
+	margin-top:30px;
+	margin-bottom:10px;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0);
+	background-color:#1ab188;
+}
+.invput{
+	border:none;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+	border-radius:3px;
+	background-color:rgba(0,0,0,0);
+	padding-left:0px;
+	padding-top:5px;
+}
+.invput.money{
+	max-width:50px;
+}
+.invput:hover{
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.header{
+	color:#afafaf;
+}
+.nav_header{
+	font-size:17px;
+	color:#ccc;
+	padding-left:15px;
+}
+.container{
+	margin:10px;
+}
+.container #main{
+
+}
+.branding_bar{
+	min-height:50px;
+	overflow:hidden;
+	margin-bottom:20px;
+	padding:5px;
+}
+#navbar_cont{
+	padding:0px !important;
+}
+.nav{
+	width:100%;
+}
+.nav li {
+	width:100%;
+}
+.nav li a{
+	border-radius:5px;
+}
+.nav li a:hover{
+	background-color:rgba(0,0,0,.2);
+	color:white;
+}
+.nav li a.accented{
+	background-color: rgba(255,62,78,0.975);
+}
+.nav li a.accented:active, .nav li a.accented:focus{
+	background-color: rgba(255,62,78,1);
+}
+.nav li a:active, .nav li a:focus{
+	background-color:rgba(0,0,0,.2);
+	color:white;
+}
+.navbar-toggle {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+}
+.dropdown-menu{
+	position:absolute;
+	border-radius:0px;
+	background-color:rgba(48,62,78,0.975);
+	left:100%;
+	top:50%;
+}
+.dropdown-menu a{
+	color:white;
+}
+.dropdown-submenu{
+	border:1px solid rgba(255,255,255,0.9);
+	background-color:rgba(255,255,255,.925);
+}
