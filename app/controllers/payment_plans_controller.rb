@@ -8,8 +8,8 @@ class PaymentPlansController < ApplicationController
   def create
     payment_plan = PaymentPlan.new filtered_params
     current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
-	payment_plan.vacation = current_vacation
-	payment_plan.transfer_amount = payment_plan.cost / ((payment_plan.end_date - payment_plan.start_date) / payment_plan.interval)
+	  payment_plan.vacation = current_vacation
+	  payment_plan.transfer_amount = payment_plan.cost / ((payment_plan.end_date - payment_plan.start_date) / payment_plan.interval)
 	
     if payment_plan.valid?
       payment_plan.save!
@@ -50,7 +50,7 @@ class PaymentPlansController < ApplicationController
 
   private
     def filtered_params
-      params.require(:paymentplan).permit(:paying_account, :transfer_account, :start_date, :end_date, :interval, :vacation_id, :cost)
+      params.require(:payment_plan).permit(:paying_account, :transfer_account, :start_date, :end_date, :interval, :vacation_id, :cost)
     end
 	
 	def transfer #where will we check when the next payment is due?

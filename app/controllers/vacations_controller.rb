@@ -10,7 +10,6 @@ class VacationsController < ApplicationController
   end
 
   def create
-    binding.pry
     vacation = Vacation.new filtered_params
     vacation.user = current_user
 

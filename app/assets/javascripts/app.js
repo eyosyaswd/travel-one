@@ -103,8 +103,8 @@ app.factory('placesFactory', ['$http',
 ]);
 
 app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
-  function($scope, $windown, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
-    $scope.places_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
+  function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
+    $scope.place_types = ["points_of_interest", "bars", "night_club", "museum", "zoo", "parks"];
     $('input[name="daterange"]').daterangepicker(); // setup datepicker
 
     function getAccounts() {
@@ -135,6 +135,7 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
       placesFactory.getPlaces(type, city)
         .success(function(places) {
           $scope.places = places;
+          console.log($scope.places);
         })
         .error(function(error) {
           $scope.places = places;
@@ -156,8 +157,8 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
 
           // load new vacations
           getVacations();
-          $window.location.href = '/payplan/' + $scope.selectedFlight.DestinationLocation;
-          
+          $window.location.href = '#/payplan/' + $scope.selectedFlight.DestinationLocation;
+
         })
         .error(function(error) {
           $scope.status = "Unable to create vacation: " + error.message;
@@ -184,7 +185,7 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
     $scope.selectFlight = function(flight) {
       $scope.selectedFlight = flight;
 
-      $scope.getPlaces($scope.places[0], $scope.selectedFlight.DestinationLocation);
+      $scope.getPlaces($scope.place_types[0], $scope.selectedFlight.DestinationLocation);
     }
 
     // get flights from Sabre
@@ -222,3 +223,6 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
 // start date
 // end date
 // interval
+
+// next transfer = last transfer + interval
+// remaining transfers = 
