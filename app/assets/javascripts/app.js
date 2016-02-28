@@ -225,6 +225,9 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
 app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory", "accountFactory",
   function($scope, $routeParams, vacationFactory, accountFactory) {
     console.log($routeParams.id);
+    $('input[name="start_date"]').daterangepicker({"singleDatePicker": true}); // setup datepicker
+    $('input[name="end_date"]').daterangepicker({"singleDatePicker": true}); // setup datepicker
+
 
     vacationFactory.getVacation($routeParams.id)
       .success(function(vacation) {
@@ -248,6 +251,18 @@ app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory"
     }
 
     getAccounts();
+
+    $scope.pay_now = function() {
+      // bill the selected account
+      var amount = $scope.vacation.fare;
+      var account = $scope.pay_now_id;
+
+      // POST THAT SHIT
+    }
+
+    $scope.create_plan = function() {
+
+    }
   }
 ]);
 

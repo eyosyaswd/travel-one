@@ -91,14 +91,24 @@
   </body>
 
   <script type="text/ng-template" id="payment_plans.html">
-    <div style="padding-left:10px;">
+    <div style="padding-left:10px;max-width: 300px;">
     <h3>How do you want to pay?</h3>
-    <h4>Option 1: pay now!</h4>
-    <button class="btn btn-success"> Pay {{ vacation.fare | currency:"$" }}</button>
-    <h4>Option 2: payment plan</h4>
-    <div style="max-width: 300px;">
-    <form id="payment_plan">
+    <h4 style="margin-top: 40px;">Option 1: pay now!</h4>
+    <form id="pay_now">
      <div class="form-group ">
+      <label class="control-label " for="paying_account">
+       Select account
+      </label>
+      <select class="select form-control invput" id="select" name="pay_now_account">
+       <option ng-repeat="account in accounts" value="{{account._id}}" ng-model="pay_now_id">{{account.nickname}}</option>
+      </select>
+     </div>
+     <button class="btn btn-success"> Pay {{ vacation.fare | currency:"$" }}</button>
+    </form>
+    <h4 style="margin-top: 40px;">Option 2: payment plan</h4>
+    <div>
+    <form id="payment_plan">
+     <div class="form-group">
       <label class="control-label " for="paying_account">
        Select paying (from) account
       </label>
@@ -111,8 +121,16 @@
        Select transfer (to) account
       </label>
       <select class="select form-control invput" id="select1" name="transfer_account">
-       <<option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
+       <option ng-repeat="account in accounts" value="{{account._id}}">{{account.nickname}}</option>
       </select>
+     </div>
+     <div class="form-group">
+      <label class="control-label" for="start_date">Start date</label>
+      <input class="form-control invput" type="text" name="start_date" value="05/04/2016" /> 
+     </div>
+     <div class="form-group">
+      <label class="control-label" for="end_date">End date</label>
+      <input class="form-control invput" type="text" name="end_date" value="05/05/2016" /> 
      </div>
      <div class="form-group ">
       <label class="control-label " for="number">
@@ -120,6 +138,7 @@
       </label>
       <input class="form-control invput" id="number" name="number" type="text"/>
      </div>
+     <button class="btn btn-success">Set up plan</button>
     </form>
     </div>
     </div>
