@@ -1,6 +1,6 @@
 class GooglePlaces
   include HTTParty
-  base_uri 'maps.googleapis.com/maps/api/place'
+  base_uri "https://maps.googleapis.com/maps/api/place"
   
   #store the api key
   def initialize(api_key)
@@ -16,6 +16,6 @@ class GooglePlaces
   #get specific details such as name, address, types, gplaces url, phone number
   # and location website corresponding to the place_id
   def detail_search(place_id)
-    self.class.get("/details/json?placeid=#{place_id}&key=", @options)
+    self.class.get("/details/json?placeid=#{place_id}&key=#{@key}")
   end
 end
