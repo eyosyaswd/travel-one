@@ -1,12 +1,119 @@
-<div class="container-fluid" ng-app="travelApp">
-  <div class="panel panel-success">
-    <div ng-controller="VacationController">
-      <div ng-repeat="vacation in vacations">
-        <p>{{ vacation }}</p>
-      </div>
-      <div ng-repeat="account in accounts">
-        <p>{{ account }}</p>
+<!doctype html>
+<html ng-app>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600,400' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag    'main', media: 'all' %>
+  </head>
+  <body>
+    <div class="loader">
+
+    </div>
+    <div class="container-fluid" id="main">
+      <div class="root">
+        <div class="row">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsed-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="glyphicon glyphicon-align-justify"></span>
+                <span class="navmenu">Menu</span>
+          </button>
+          <div class="col-md-3" id="sidebar">
+          <div class="collapse navbar-collapse" id="collapsed-navigation">
+          
+            <div class="branding_bar">
+              <%= image_tag("capitalone-logo.png", width:"120px", class:"header_img") %>
+              <p style="margin-top:10px;margin-left:5px"><i>Reimagine Banking</i></p>
+            </div>
+              <ul class="nav navbar-stacked">
+                <li class="nav_header">Dashboard</li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Select Account <b class="caret"></b></a>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
+                  <ul class="dropdown-menu trips">
+                  <li class="menu-item"><a href="#">Add Trip</a></li><hr/>
+                    {{TRIPS}}
+                    <!-- populate with trips using this template -->
+                    <li class="menu-item dropdown dropdown-submenu trip">
+                      <a href="#" onclick="loadTrip();">TEST<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
+                    </li>
+
+                  </ul>
+                </li>
+                <hr/>
+                <li class="nav_header">Account: {{Account}}</li>
+                <li><a href="#"> Status: {{Status}}</a></li>
+                <li><a href="#"> Balance: {{Balance}}</a></li>
+                <li><a href="#"> Next Transfer: {{NT}}</a></li>
+                <li><a href="#"> Remaining Transfers: {{RT}}</a></li>
+                <hr/>
+
+                <li><a href="#" class="accented">Sign Out</a></li>
+              </ul>
+          </div>
+
+          </div><!-- /.navbar-collapse -->
+          <div class="col-xs-3" id="spacer"></div>
+          <div class="col-md-9" id="overview">
+            <!-- budget, plans, etc... -->
+            <!-- the display for planning a new trip is the same as displaying current trip -->
+            <div class="container">
+              <div class="row" id= "view-trip" hidden>
+                <!-- display stuff will go here -->
+              </div>
+              <div class="row" id= "add-trip">
+                <form id="trip">
+                <h5 class="header">Add Trip</h5>
+                <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> <br/> From
+                <input class="invput" type="text" name="daterange" value="01/01/2016 - 01/31/2016" /> <br/>
+                Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="City name or airport code" /> <br/><!-- replace value with {{date}} -->
+                With a budget of: $<input class="invput" value="300.00" placeholder="What's your budget?">
+                <br/>
+                <input type="button" value="Search" id="submit_form_btn">
+                <hr/>
+                </form>
+                <div class="results" style="width:100%;height:100%;overflow-y:scroll;height:1000px">
+                  <center>
+                    <h5 class="muted"> Your Results Will Appear Here </h5>
+                  </center>
+                </div>
+                <div class="c1" style="">
+                </div>
+                <div class="c2">
+                  <canvas id="budget_chart" width="200" height="200" hidden> </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <footer class="sticky footer">
+      <div class="container">
+        <div class="txt text-right">
+          Created By Team Win
+        </div>
+      </div>
+    </footer>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <!--
+    <script src="main.js"></script>
+    -->
+    <script>$('input[name="daterange"]').daterangepicker();</script>
+  </body>
+</html>
