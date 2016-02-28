@@ -44,6 +44,7 @@ class VacationsController < ApplicationController
       head :error
     else
       vacation.destroy
+	  vacation.payment_plan.destroy
       render json: vacation
     end
   end
