@@ -82,7 +82,7 @@
                 </form>
                 <div class="results" style="width:100%;height:100%;max-height:1000px;min-height:500px;">
                   <ul class="flight-result">
-                    <li class="flight-box" ng-repeat="flight in flights | orderBy:'+LowestFare.Fare'">
+                    <li class="flight-box" ng-repeat="flight in flights.FareInfo | orderBy:'+LowestFare.Fare'">
                       <img src="">
                       <div class="flight-price"><center><span style="font-size:19px">{{ flight.LowestFare.Fare | currency:"$" }}</span><center></div>
                       <div class="flight-destination">Destination: <span style="float:right;">{{ flight.DestinationLocation }}</span></div>

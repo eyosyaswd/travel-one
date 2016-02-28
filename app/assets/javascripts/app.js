@@ -175,7 +175,7 @@ app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'acc
 
     // get flights from Sabre
     $scope.getFlights = function() {
-      $scope.selectedAccount = null;
+      $scope.selectedFlight = null;
 
       var picker = $('input[name="daterange"]');
       var startMoment = moment(picker.data('daterangepicker').startDate);
