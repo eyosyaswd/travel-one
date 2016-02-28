@@ -40,6 +40,11 @@
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle selected" href="" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="plan in plans">
+                      <a href="">Transfer every {{plan.interval}} days of {{plan.transfer_amount | currency:"$"}}</a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle selected" href="" data-toggle="dropdown">Trips <b class="caret"></b></a>
                   <ul class="dropdown-menu trips">
@@ -56,8 +61,8 @@
                 <li><a href=""> Type: <span style="float: right;">{{ selectedAccount.type }}</span></a></li>
                 <li><a href=""> Balance: <span style="float: right;">{{ selectedAccount.balance | currency }}</span></a></li>
                 <li><a href=""> Rewards: <span style="float: right;">{{ selectedAccount.rewards | currency }}</span></a></li>
-                <li><a href=""> Next Transfer: <span style="float: right;">TBD</span> </a></li>
-                <li><a href=""> Remaining Transfers: <span style="float: right;">TBD</span></a></li>
+                <li><a href=""> Next Transfer: <span style="float: right;">None</span> </a></li>
+                <li><a href=""> Remaining Transfers: <span style="float: right;">None</span></a></li>
                 <hr/>
                 <li><a href="" class="accented">Sign Out</a></li>
               </ul>
@@ -91,7 +96,7 @@
   <script type="text/ng-template" id="payment_plans.html">
     <div style="padding-left:10px;max-width: 300px;">
     <h3>How do you want to pay?</h3>
-    <h4 style="margin-top: 40px;">Option 1: pay now!</h4>
+    <h4 style="margin-top: 40px;">Option 1: Pay Now!</h4>
     <form id="pay_now">
      <div class="form-group ">
       <label class="control-label " for="paying_account">
@@ -103,7 +108,7 @@
      </div>
      <button class="btn btn-success"> Pay {{ vacation.fare | currency:"$" }}</button>
     </form>
-    <h4 style="margin-top: 40px;">Option 2: payment plan</h4>
+    <h4 style="margin-top: 40px;">Option 2: Payment Plan</h4>
     <div>
     <form id="payment_plan">
      <div class="form-group">

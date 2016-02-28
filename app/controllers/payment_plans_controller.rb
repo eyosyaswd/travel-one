@@ -5,6 +5,11 @@ class PaymentPlansController < ApplicationController
     @cap1 = CapitalOne.new('62dbca64eba755113d88efdeee141db0')
   end
   
+  def index
+    payment_plan = PaymentPlan.where(vacation: Vacation.where(user: current_user))
+	  render json: payment_plan
+  end
+  
   def create
     payment_plan = PaymentPlan.new filtered_params
     current_vacation = (Vacation.where(user: current_user)).order("created_at").last 
