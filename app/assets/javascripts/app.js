@@ -68,7 +68,7 @@ app.factory('placesFactory', ['$http',
   }
 ]);
 
-app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory',
+app.controller('vacationController', ['$scope', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory',
   function($scope, $auth, vacationFactory, accountFactory, placesFactory){
     $scope.name = 'Will';
 
@@ -78,6 +78,8 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'acc
       accountFactory.getAccounts()
         .success(function(accounts) {
           $scope.accounts = accounts;
+          $scope.selectedAccount = accounts[0];
+          console.log($scope.accounts);
         })
         .error(function(error) {
           $scope.status = "Unable to load accounts: " + error.message;
@@ -88,6 +90,7 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'acc
       vacationFactory.getVacations()
         .success(function(vacations) {
           $scope.vacations = vacations;
+          console.log($scope.vacations);
         })
         .error(function(error) {
           $scope.status = "Unable to load vacations: " + error.message;
@@ -106,11 +109,6 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'acc
         });
     }
 
-    $scope.testPlaces = function(type, city) {
-      console.log(type + " " + city);
-      return type + " " + city;
-    }
-
     $scope.login = function() {
       $auth.submitLogin({
         // just use the test user
@@ -121,6 +119,14 @@ app.controller('VacationController', ['$scope', '$auth', 'vacationFactory', 'acc
       }).catch(function (res) {
         console.log(res);
       });
+    }
+
+    $scope.loadTrip = function() {
+      
+    }
+
+    $scope.selectAccount = function(account) {
+      $scope.selectedAccount = account;
     }
 
     $scope.login();

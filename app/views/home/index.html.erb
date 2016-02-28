@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -15,8 +15,8 @@
     <div class="loader">
 
     </div>
-    <div class="container-fluid" id="main">
-      <div class="root">
+    <div class="container-fluid" id="main" ng-app="travelApp">
+      <div class="root" ng-controller="vacationController">
         <div class="row">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsed-navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -34,6 +34,11 @@
                 <li class="nav_header">Dashboard</li>
                 <li class="dropdown">
                   <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Select Account <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="account in accounts">
+                      <a href="#" ng-click="selectAccount(account)">{{ account.nickname }}</a>
+                    <li>
+                  </ul>
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
@@ -41,20 +46,20 @@
                 <li class="dropdown"><a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
                   <ul class="dropdown-menu trips">
                   <li class="menu-item"><a href="#">Add Trip</a></li><hr/>
-                    {{TRIPS}}
                     <!-- populate with trips using this template -->
-                    <li class="menu-item dropdown dropdown-submenu trip">
-                      <a href="#" onclick="loadTrip();">TEST<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
+                    <li class="menu-item dropdown dropdown-submenu trip" ng-repeat="vacation in vacations">
+                      <a href="#" onclick="loadTrip();">{{ vacation.origin }} to {{ vacation.destination }}<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
                     </li>
 
                   </ul>
                 </li>
                 <hr/>
-                <li class="nav_header">Account: {{Account}}</li>
-                <li><a href="#"> Status: {{Status}}</a></li>
-                <li><a href="#"> Balance: {{Balance}}</a></li>
-                <li><a href="#"> Next Transfer: {{NT}}</a></li>
-                <li><a href="#"> Remaining Transfers: {{RT}}</a></li>
+                <li class="nav_header">Account: {{ selectedAccount.nickname }}</li>
+                <li><a href="#"> Type: {{ selectedAccount.type }}</a></li>
+                <li><a href="#"> Balance: {{ selectedAccount.balance }}</a></li>
+                <li><a href="#"> Rewards: {{ selectedAccount.rewards }}</a></li>
+                <li><a href="#"> Next Transfer: TBD </a></li>
+                <li><a href="#"> Remaining Transfers: TBD</a></li>
                 <hr/>
 
                 <li><a href="#" class="accented">Sign Out</a></li>
@@ -63,37 +68,39 @@
 
           </div><!-- /.navbar-collapse -->
           <div class="col-xs-3" id="spacer"></div>
-          <div class="col-md-9" id="overview">
-            <!-- budget, plans, etc... -->
-            <!-- the display for planning a new trip is the same as displaying current trip -->
-            <div class="container">
-              <div class="row" id= "view-trip" hidden>
-                <!-- display stuff will go here -->
-              </div>
-              <div class="row" id= "add-trip">
-                <form id="trip">
-                <h5 class="header">Add Trip</h5>
-                <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> <br/> From
-                <input class="invput" type="text" name="daterange" value="01/01/2016 - 01/31/2016" /> <br/>
-                Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="City name or airport code" /> <br/><!-- replace value with {{date}} -->
-                With a budget of: $<input class="invput" value="300.00" placeholder="What's your budget?">
-                <br/>
-                <input type="button" value="Search" id="submit_form_btn">
-                <hr/>
-                </form>
-                <div class="results" style="width:100%;height:100%;overflow-y:scroll;height:1000px">
-                  <center>
-                    <h5 class="muted"> Your Results Will Appear Here </h5>
-                  </center>
+
+            <div class="col-md-9" id="overview" ng-view="">
+              <!-- budget, plans, etc... -->
+              <!-- the display for planning a new trip is the same as displaying current trip -->
+              <div class="container">
+                <div class="row" id= "view-trip" hidden>
+                  <!-- display stuff will go here -->
                 </div>
-                <div class="c1" style="">
-                </div>
-                <div class="c2">
-                  <canvas id="budget_chart" width="200" height="200" hidden> </canvas>
+                <div class="row" id= "add-trip">
+                  <form id="trip">
+                  <h5 class="header">Add Trip</h5>
+                  <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> <br/> From
+                  <input class="invput" type="text" name="daterange" value="01/01/2016 - 01/31/2016" /> <br/>
+                  Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="City name or airport code" /> <br/><!-- replace value with {{date}} -->
+                  With a budget of: $<input class="invput" value="300.00" placeholder="What's your budget?">
+                  <br/>
+                  <input type="button" value="Search" id="submit_form_btn">
+                  <hr/>
+                  </form>
+                  <div class="results" style="width:100%;height:100%;overflow-y:scroll;height:1000px">
+                    <center>
+                      <h5 class="muted"> Your Results Will Appear Here </h5>
+                    </center>
+                  </div>
+                  <div class="c1" style="">
+                  </div>
+                  <div class="c2">
+                    <canvas id="budget_chart" width="200" height="200" hidden> </canvas>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
           </div>
         </div>
       </div>
