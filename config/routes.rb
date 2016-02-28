@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :create, :show], path: '/api/accounts'
   resources :places, only: [:index, :show], path: '/api/places'
   resources :flights, only: [:index], path: '/api/flights'
-  resources :payment_plans, only: [:index, :create, :show, :destroy], path: '/api/payment_plans'
+  resources :payment_plans, only: [:create, :show, :destroy], path: '/api/payment_plans'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
