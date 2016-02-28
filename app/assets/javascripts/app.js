@@ -10,9 +10,9 @@ app.config(function($authProvider, $routeProvider) {
       templateUrl: "vacations.html",
       controller: "vacationController"
     })
-    .when("/payplan/:loc", {
+    .when("/payplan/:id", {
       templateUrl: "payment_plans.html",
-      controller: "vacationsController"
+      controller: "paymentController"
     })
     .otherwise({redirectTo: "/"})
 });
@@ -161,7 +161,7 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
 
           // load new vacations
           getVacations();
-          $window.location.href = '#/payplan/' + $scope.selectedFlight.DestinationLocation;
+          $window.location.href = '#/payplan/' + vacation.id;
 
         })
         .error(function(error) {
@@ -218,6 +218,35 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
 
     $scope.login();
     getVacations();
+    getAccounts();
+  }
+]);
+
+app.controller("paymentController", ["$scope", "$routeParams", "vacationFactory", "accountFactory",
+  function($scope, $routeParams, vacationFactory, accountFactory) {
+    console.log($routeParams.id);
+
+    vacationFactory.getVacation($routeParams.id)
+      .success(function(vacation) {
+        $scope.vacation = vacation;
+        console.log($scope.vacation);
+      })
+      .error(function(error) {
+        $scope.status = "Unable to load vacation: " + error.message;
+      });
+
+    function getAccounts() {
+      accountFactory.getAccounts()
+        .success(function(accounts) {
+          $scope.accounts = accounts;
+          $scope.selectedAccount = accounts[0];
+          console.log($scope.accounts);
+        })
+        .error(function(error) {
+          $scope.status = "Unable to load accounts: " + error.message;
+        });
+    }
+
     getAccounts();
   }
 ]);
