@@ -70,9 +70,9 @@ form > * {
 .invput{
 	border:none;
 	border-bottom: 1px solid rgba(255,255,255,.5);
-	border-radius:3px;
+	border-radius:0px;
 	background-color:rgba(0,0,0,0);
-	padding-left:0px;
+	padding-left:5px;
 	padding-top:5px;
 }
 .invput.money{
@@ -80,6 +80,15 @@ form > * {
 }
 .invput:hover{
 	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.invput:focus, .invput:active{
+	border:none;
+}
+select.invput{
+	color:white;
+}
+select option{
+	color:#333;
 }
 .header{
 	color:#afafaf;
@@ -123,7 +132,11 @@ form > * {
 .nav li a.accented:active, .nav li a.accented:focus{
 	background-color: rgba(255,62,78,1);
 }
-.nav li a:active, .nav li a:focus{
+.nav li a:active, .nav li a:focus, li.dropdown.open > a{
+	background-color:rgba(0,0,0,.2);
+	color:white;
+}
+.dropdown-toggle:active, .dropdown-toggle:focus{
 	background-color:rgba(0,0,0,.2);
 	color:white;
 }
@@ -138,11 +151,17 @@ form > * {
 	background-color:rgba(48,62,78,0.975);
 	left:100%;
 	top:50%;
+	color:white;
+    -webkit-box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
+    moz-box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
+	box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
 }
-.dropdown-menu a{
+.dropdown-menu li a{
+	border-radius:0px;
 	color:white;
 }
 .dropdown-submenu{
+	color:inherit;
 	border:1px solid rgba(255,255,255,0.9);
 	background-color:rgba(255,255,255,.925);
 }
@@ -182,4 +201,22 @@ ul, li{
 	margin-bottom:10px;
 	background-image:image-url("background2.jpg");
 	border:0px;
+}
+.flight-box.selected{
+	transform: scale(1.05);
+}
+.modal-content{
+	color:#333;
+}
+.calendar-table thead{
+	color:black;
+}
+.calandar td.available{
+	color:gray;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: rgba(0,0,0,.2);
+}
+.dropdown-menu>li>a:hover{
+	background-image:none;
 }
