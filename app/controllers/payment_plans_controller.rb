@@ -6,7 +6,7 @@ class PaymentPlansController < ApplicationController
   end
 
   def index
-    render json: PaymentPlan.where(vacation: current_vacation) #needs to be changed
+    render json: Vacation.where(user: current_user) #needs to be changed
   end
 
   def create
@@ -57,4 +57,5 @@ class PaymentPlansController < ApplicationController
 	    transfer_amount = cost / ((end_date - start_date) / interval) 
 	    @cap1.create_transfer(:paying_account, :transfer_account, Date.current, transfer_amount)
 	  end
+	end
 end
