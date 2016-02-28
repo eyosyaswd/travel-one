@@ -70,9 +70,9 @@ form > * {
 .invput{
 	border:none;
 	border-bottom: 1px solid rgba(255,255,255,.5);
-	border-radius:3px;
+	border-radius:0px;
 	background-color:rgba(0,0,0,0);
-	padding-left:0px;
+	padding-left:5px;
 	padding-top:5px;
 }
 .invput.money{
@@ -80,6 +80,9 @@ form > * {
 }
 .invput:hover{
 	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.invput:focus, .invput:active{
+	border:none;
 }
 .header{
 	color:#afafaf;
@@ -195,4 +198,19 @@ ul, li{
 }
 .flight-box.selected{
 	transform: scale(1.05);
+}
+.modal-content{
+	color:#333;
+}
+.calendar-table thead{
+	color:black;
+}
+.calandar td.available{
+	color:gray;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: rgba(0,0,0,.2);
+}
+.dropdown-menu>li>a:hover{
+	background-image:none;
 }

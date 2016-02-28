@@ -19,9 +19,7 @@
       <div class="root" ng-controller="vacationController">
         <div class="row">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsed-navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-                <span class="navmenu">Menu</span>
+                <span class="glyphicon glyphicon-align-justify" style="float:right;"></span>
           </button>
           <div class="col-md-3" id="sidebar">
             <div class="collapse navbar-collapse" id="collapsed-navigation">
@@ -41,20 +39,14 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-<<<<<<< HEAD
-                  <a class="dropdown-toggle" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
-                </li>
-                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
-=======
                   <a class="dropdown-toggle selected" href="" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle selected" href="" data-toggle="dropdown">Trips <b class="caret"></b></a>
->>>>>>> 7cad04a509e3fc978052bbbd52fc21c06d865dc3
                   <ul class="dropdown-menu trips">
-                  <li class="menu-item"><a href="">Add Trip</a></li>
+                    <li class="menu-item"><a href="">Add Trip</a></li>
                     <li role="presentation" class="divider"></li>
-                    <li class="menu-item dropdown dropdown-submenu trip" ng-repeat="vacation in vacations">
-                      <a href="" onclick="loadTrip();">{{ vacation.origin }} to {{ vacation.destination }}<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
+                    <li class="menu-item trip" ng-repeat="vacation in vacations">
+                      <a href="" onclick="loadTrip();">{{ vacation.origin }} to {{ vacation.destination }}<span class="glyphicon glyphicon-remove" style="float:right;color:white;margin:0px 5px 0px 5px;padding:2px 5px 0px 5px;" onclick="alert();"></span></a>
                     </li>
                   </ul>
                 </li>
@@ -109,9 +101,9 @@
     <div class="row" id= "view-trip" hidden></div>
     <div class="row" id= "add-trip">
       <form id="trip">
-      <h5 class="header">Add Trip</h5>
+      <h5 class="header">Plan Your Trip</h5>
       <!-- <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> --> 
-      <br/> From
+      Dates:
       <input class="invput" type="text" name="daterange" value="05/04/2016 - 05/14/2016" /> <br/>
       Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="Airport code" ng-model="origin"/> <br/><!-- replace value with {{date}} -->
       With a budget of: $<input class="invput" value="300.00" ng-model="max_price" placeholder="What's your budget?">
@@ -140,7 +132,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Your vacation to {{ selectedFlight.DestinationLocation }}</h4>
+          <h4 class="modal-title" id="myModalLabel">Plan Your Vacation to {{ selectedFlight.DestinationLocation }}</h4>
         </div>
         <div class="modal-body">
           <p>Here are some things you could do at your destination:</p>
