@@ -3,4 +3,6 @@ class Vacation < ActiveRecord::Base
 
   # need origin, fare, origin and return time
   validates :origin, :destination, :fare, :departure_time, :return_time, presence: true
+  
+  has_one :payment_plan
 end

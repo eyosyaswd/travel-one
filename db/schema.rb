@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227082531) do
+ActiveRecord::Schema.define(version: 20160228002645) do
+
+  create_table "payment_plans", force: :cascade do |t|
+    t.string   "paying_account"
+    t.string   "transfer_account"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "interval"
+    t.integer  "vacation_id"
+    t.decimal  "cost"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
