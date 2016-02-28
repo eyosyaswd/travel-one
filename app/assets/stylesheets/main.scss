@@ -21,7 +21,7 @@ footer{
 	bottom:0px;
 	left:0px;
 	right:0px;
-	min-height:40px;
+	min-height:33px;
 	background-color:rgba(0,0,0,.925);
 	z-index:999999999;
 }
@@ -40,16 +40,23 @@ a{
 form > * {
 	margin-top:10px;
 }
-
+.main_content{
+	padding-left:310px;
+}
 #sidebar{
 	border-right:1px solid rgba(255,255,255,.25);
 	position:fixed;
-	top:20px;
+	min-width:300px;
+	top:0px;
 	bottom:-50px;
-	background-color:rgba(0,0,0,.5);
+	background-color:rgba(48,62,78,0.975);
 	margin-left:5px;
 	margin-bottom:50px;
 	z-index:9999;
+}.spacer{
+	float:left;
+	min-width:305px;
+	min-height:100%;
 }
 #submit_form_btn{
 	margin-top:30px;
@@ -76,6 +83,7 @@ form > * {
 	color:#afafaf;
 }
 .nav_header{
+	font-size:17px;
 	color:#ccc;
 	padding-left:15px;
 }
@@ -109,6 +117,13 @@ form > * {
 }
 .nav li a.accented{
 	background-color: rgba(255,62,78,0.975);
+}
+.nav li a.accented:active, .nav li a.accented:focus{
+	background-color: rgba(255,62,78,1);
+}
+.nav li a:active, .nav li a:focus{
+	background-color:rgba(0,0,0,.2);
+	color:white;
 }
 .navbar-toggle {
     width: 100%;
