@@ -42,6 +42,7 @@ form > * {
 }
 .main_content{
 	padding-left:310px;
+	overflow:wrap;
 }
 #sidebar{
 	border-right:1px solid rgba(255,255,255,.25);
@@ -144,4 +145,41 @@ form > * {
 .dropdown-submenu{
 	border:1px solid rgba(255,255,255,0.9);
 	background-color:rgba(255,255,255,.925);
+}
+ul, li{
+	list-style-type: none;
+	padding:0px;
+	margin:0px;
+}
+.flight-box{
+	font-family:helvetica;
+	-webkit-box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
+    moz-box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
+	box-shadow: 10px 10px 3px -8px rgba(0,0,0,0.55);
+	margin:7px;
+	padding:15px;
+	min-width:285px;
+	max-width:285px;
+	min-height:300px;
+	background-color:rgba(88,102,118,0.975);;
+	float:left;
+	color:inherit;
+	font-size:15px;
+	border-radius:2px;
+	opacity:.925;
+}
+.flight-box:hover{
+	background-color:rgba(90,104,120,1);
+	transform: scale(1.05);
+	opacity:1;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+}
+.flight-box img{
+	width:100%;
+	height:150px;
+	margin-bottom:10px;
+	background-image:image-url("background2.jpg");
+	border:0px;
 }
