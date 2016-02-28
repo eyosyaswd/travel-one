@@ -11,11 +11,11 @@
 
     <%= stylesheet_link_tag    'main', media: 'all' %>
   </head>
-  <body>
+  <body ng-app="travelApp">
     <div class="loader">
 
     </div>
-    <div class="container-fluid" id="main" ng-app="travelApp">
+    <div class="container-fluid" id="main">
       <div class="root" ng-controller="vacationController">
         <div class="row">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsed-navigation">
@@ -33,78 +33,49 @@
                 <!-- Dashboard -->
                 <li class="nav_header">Dashboard</li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Select Account <b class="caret"></b></a>
+                  <a class="dropdown-toggle selected" href="" data-toggle="dropdown">Select Account <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li ng-repeat="account in accounts">
-                      <a href="#" ng-click="selectAccount(account)">{{ account.nickname }}</a>
+                      <a href="" ng-click="selectAccount(account)">{{ account.nickname }}</a>
                     <li>
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
+                  <a class="dropdown-toggle selected" href="" data-toggle="dropdown">Payment Plans <b class="caret"></b></a>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle selected" href="#" data-toggle="dropdown">Trips <b class="caret"></b></a>
+                <li class="dropdown"><a class="dropdown-toggle selected" href="" data-toggle="dropdown">Trips <b class="caret"></b></a>
                   <ul class="dropdown-menu trips">
-                  <li class="menu-item"><a href="#">Add Trip</a></li>
+                  <li class="menu-item"><a href="">Add Trip</a></li>
                     <li role="presentation" class="divider"></li>
                     <li class="menu-item dropdown dropdown-submenu trip" ng-repeat="vacation in vacations">
-                      <a href="#" onclick="loadTrip();">{{ vacation.origin }} to {{ vacation.destination }}<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
+                      <a href="" onclick="loadTrip();">{{ vacation.origin }} to {{ vacation.destination }}<span class="glyphicon glyphicon-remove" style="float:right;color:red;"></span></a>
                     </li>
                   </ul>
                 </li>
                 <hr/>
                 <!-- Account Section -->
                 <li class="nav_header">Account: {{ selectedAccount.nickname }}</li>
-                <li><a href="#"> Type: <span style="float: right;">{{ selectedAccount.type }}</span></a></li>
-                <li><a href="#"> Balance: <span style="float: right;">{{ selectedAccount.balance | currency }}</span></a></li>
-                <li><a href="#"> Rewards: <span style="float: right;">{{ selectedAccount.rewards | currency }}</span></a></li>
-                <li><a href="#"> Next Transfer: <span style="float: right;">TBD</span> </a></li>
-                <li><a href="#"> Remaining Transfers: <span style="float: right;">TBD</span></a></li>
+                <li><a href=""> Type: <span style="float: right;">{{ selectedAccount.type }}</span></a></li>
+                <li><a href=""> Balance: <span style="float: right;">{{ selectedAccount.balance | currency }}</span></a></li>
+                <li><a href=""> Rewards: <span style="float: right;">{{ selectedAccount.rewards | currency }}</span></a></li>
+                <li><a href=""> Next Transfer: <span style="float: right;">TBD</span> </a></li>
+                <li><a href=""> Remaining Transfers: <span style="float: right;">TBD</span></a></li>
                 <hr/>
-                <li><a href="#" class="accented">Sign Out</a></li>
+                <li><a href="" class="accented">Sign Out</a></li>
               </ul>
-            </div>
-          </div><!-- /.navbar-collapse -->
-          <div class="main_content">
-            <div class="spacer" id="spacer"></div>
-            <div class="container">
-              <div class="row" id= "view-trip" hidden></div>
-              <div class="row" id= "add-trip">
-                <form id="trip">
-                <h5 class="header">Add Trip</h5>
-                <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> <br/> From
-                <input class="invput" type="text" name="daterange" value="05/04/2016 - 05/14/2016" /> <br/>
-                Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="Airport code" ng-model="origin"/> <br/><!-- replace value with {{date}} -->
-                With a budget of: $<input class="invput" value="300.00" ng-model="max_price" placeholder="What's your budget?">
-                <br/>
-                <input type="button" value="Search" id="submit_form_btn" ng-click="getFlights()">
-                <hr/>
-                </form>
-                <div class="results" style="width:100%;height:100%;max-height:1000px;min-height:500px;">
-                  <ul class="flight-result">
-                    <li class="flight-box" ng-repeat="flight in flights.FareInfo | orderBy:'+LowestFare.Fare'">
-                      <img src="">
-                      <div class="flight-price"><center><span style="font-size:19px">{{ flight.LowestFare.Fare | currency:"$" }}</span><center></div>
-                      <div class="flight-destination">Destination: <span style="float:right;">{{ flight.DestinationLocation }}</span></div>
-                      <div class="flight-distance">Distance: <span style="float:right;">{{ flight.Distance }} miles</span></div>
-                      <div class="flight-price-per-mile">PPM: <span style="float:right;">{{ flight.PricePerMile | currency:"$"}}/mile</span></div>
-                    </li>
-                  </ul>
-                </div>
-                <input type="button" class="btn" value="Select" ng-show="selectedFlight" ng-click="createVacation(flights)">
-              </div>
-              </div>
-            </div>
+            </div><!-- /.navbar-collapse -->
           </div>
-
+          <div class="main_content">
+            <ng-view></ng-view>
           </div>
         </div>
       </div>
     </div>
+
     <footer class="sticky footer">
       <div class="container">
         <div class="txt text-right">
-          Created By Team Win
+           © Team Win 2016
         </div>
       </div>
     </footer>
@@ -117,6 +88,63 @@
     <!--
     <script src="main.js"></script>
     -->
-    <script>$('input[name="daterange"]').daterangepicker();</script>
   </body>
+
+  <script type="text/ng-template" id="payment_plans.html">
+    <h1>This is the payment plan!</h1>
+    <form id="payplan">
+
+    </form>
+  </script>
+
+  <script type="text/ng-template" id="vacations.html">
+  <div class="spacer" id="spacer"></div>
+  <div class="container">
+    <div class="row" id= "view-trip" hidden></div>
+    <div class="row" id= "add-trip">
+      <form id="trip">
+      <h5 class="header">Add Trip</h5>
+      <!-- <input class="invput" value="My Capital One Trip" placeholder="Name Your Trip"> --> 
+      <br/> From
+      <input class="invput" type="text" name="daterange" value="05/04/2016 - 05/14/2016" /> <br/>
+      Departing from: <input class="autocomplete invput" type="text" name="keyword" placeholder="Airport code" ng-model="origin"/> <br/><!-- replace value with {{date}} -->
+      With a budget of: $<input class="invput" value="300.00" ng-model="max_price" placeholder="What's your budget?">
+      <br/>
+      <input type="button" value="Search" id="submit_form_btn" ng-click="getFlights()">
+      <hr/>
+      </form>
+      <div class="results" style="width:100%;height:100%;max-height:1000px;min-height:500px;">
+        <ul class="flight-result">
+          <li class="flight-box" ng-repeat="flight in flights.FareInfo | orderBy:'+LowestFare.Fare'" ng-click="selectFlight(flight)" data-toggle="modal" data-target="#myModal">
+            <img src="">
+            <div class="flight-price"><center><span style="font-size:19px">{{ flight.LowestFare.Fare | currency:"$" }}</span><center></div>
+            <div class="flight-destination">Destination: <span style="float:right;">{{ flight.DestinationLocation }}</span></div>
+            <div class="flight-distance">Distance: <span style="float:right;">{{ flight.Distance }} miles</span></div>
+            <div class="flight-price-per-mile">PPM: <span style="float:right;">{{ flight.PricePerMile | currency:"$"}}/mile</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Your vacation to {{ selectedFlight.DestinationLocation }}</h4>
+        </div>
+        <div class="modal-body">
+          <p>Here are some things you could do at your destination:</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="createVacation(flights)" data-dismiss="modal">Book Vacation!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </script>
 </html>
