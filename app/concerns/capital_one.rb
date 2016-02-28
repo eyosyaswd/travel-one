@@ -17,36 +17,36 @@ class CapitalOne
 	
   def create_account(customer_id, nickname)
     self.class.post("http://api.reimaginebanking.com/customers/#{customer_id}/accounts",
-      body: { type: "Savings",
-              nickname: nickname,
-              rewards: 0,
-              balance: 0
-            }.to_json,
-      headers: { 'Content-Type' => 'application/json' },
-      query: @options[:query])
+    body: { type: "Savings",
+        nickname: nickname,
+        rewards: 0,
+        balance: 0,
+      }.to_json,
+    headers: { 'Content-Type' => 'application/json' },
+    query: @options[:query])
   end
 
   def create_bill(account_id, payment_amount)
     self.class.post("http://api.reimaginebanking.com/accounts/#{account_id}/bills",
 	  body: { status: "pending",
-	          payee: "Travel One",
-			  nickname: "Upcoming Trip",
-			  payment_date: Date.today,
-			  recurring_date: 0
-			  payment_amount: payment_amount
-			  }.to_json,
+      payee: "Travel One",
+		  nickname: "Upcoming Trip",
+		  payment_date: Date.today,
+		  recurring_date: 0,
+		  payment_amount: payment_amount,
+		  }.to_json,
 	  headers: { 'Content-Type' => 'application/json' },
 	  query: @options[:query])
   end
   
   def withdraw(account_id, amount)
-      self.class.post("http://api.reimaginebanking.com/accounts/#{account_id}/withdrawals",
+    self.class.post("http://api.reimaginebanking.com/accounts/#{account_id}/withdrawals",
 	  body: { medium: "balance",
-			  transaction_date: Date.today,
-			  status: "pending",
-			  amount: amount,
-			  description: "The withdrawal associated with your new travel plans"
-			  }.to_json,
+		  transaction_date: Date.today,
+		  status: "pending",
+		  amount: amount,
+		  description: "The withdrawal associated with your new travel plans"
+	  }.to_json,
 	  headers: { 'Content-Type' => 'application/json' },
 	  query: @options[:query])
   end

@@ -7,7 +7,7 @@ class PaymentPlansController < ApplicationController
   
   def index
     payment_plan = PaymentPlan.where(vacation: Vacation.where(user: current_user))
-	render json: payment_plan
+	  render json: payment_plan
   end
   
   def create

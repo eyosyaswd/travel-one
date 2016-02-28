@@ -115,12 +115,16 @@ app.factory('paymentPlanFactory', ['$http',
       return $http.post(urlBase, plan);
     }
 
+    plans.getPlans = function() {
+      return $http.get(urlBase);
+    }
+
     return plans;
   }
 ]);
 
-app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory',
-  function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory){
+app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFactory', 'accountFactory', 'placesFactory', 'flightFactory', 'paymentPlanFactory',
+  function($scope, $window, $auth, vacationFactory, accountFactory, placesFactory, flightFactory, paymentPlanFactory){
     $scope.place_types = ["points+of+interest", "bars", "night_club", "museum", "zoo", "parks"];
     $('input[name="daterange"]').daterangepicker(); // setup datepicker
 
@@ -133,6 +137,17 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
         })
         .error(function(error) {
           $scope.status = "Unable to load accounts: " + error.message;
+        });
+    }
+
+    function getPaymentPlans() {
+      paymentPlanFactory.getPlans()
+        .success(function(plans) {
+          $scope.plans = plans;
+          console.log($scope.plans);
+        })
+        .error(function(error) {
+          $scope.status = "Unable to load payment plans: " + error.message;
         });
     }
 
@@ -232,6 +247,7 @@ app.controller('vacationController', ['$scope', '$window', '$auth', 'vacationFac
     $scope.login();
     getVacations();
     getAccounts();
+    getPaymentPlans();
   }
 ]);
 
