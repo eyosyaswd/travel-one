@@ -1,9 +1,18 @@
 # Travel One
 The purpose of this application is to give users the options to plan the best trips
 to fit their budget and properly and easily allocate their money to save for their
-dream destinations. This app uses Capital One's Nessie Hackathon API, the Sabre Developer API and
-the Google Places API. The backend uses a RESTful API built with Ruby on Rails to communicate with
-a front end implemented in Angular.js.
+dream destinations. This app uses **Capital One's Nessie Hackathon API**, the **Sabre Developer API** and
+the **Google Places API**. The backend uses a **RESTful API** built with **Ruby on Rails** to communicate with
+a front end implemented in **Angular.js**.
+
+This application was created by me (freshman at the time), Will Theuer (junior), Daniel Edwards (junior), and Khauri McClain (sophomore)
+and won the first place prize for the Capital One API challenge at VTHacks III on February, 2016. I mostly worked on the front end of 
+our web app. This was my first time doing any kind of web development and I was also exposed to HTML, CSS, and JavaScript for the first
+time. I created the sign-up/login page using online resources to teach myself. I also worked on the front end part of the other pages 
+for our app. Unfortunately, we had difficulty with authentication which meant we had to leave out the login page from the final product.
+However, I am proud of the work my teammates and I did, and I am glad that were awarded for the hard work.
+
+You can find more information about our application and the hackathon here: https://devpost.com/software/vthacks.
 
 #### GET /api/vacations
 Returns the vacations planned for the current user.
